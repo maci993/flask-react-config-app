@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Login from "./components/Login.jsx";
-import Configuration from "./components/Configuration.jsx";
+import DeviceConfiguration from "./components/DeviceConfiguration.jsx";
 
 const App = () => {
   const [message, setMessage] = useState("");
   const [config, setConfig] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleLogin = async ({ username, password }) => {
     try {
@@ -14,7 +15,9 @@ const App = () => {
         password,
       });
       setMessage(response.data.message);
-      if (response.status === 200) fetchConfig();
+      if (response.status === 200) 
+        setIsAuthenticated(true);
+        fetchConfig();
     } catch (error) {
       setMessage("Invalid credentials!");
     }
@@ -52,13 +55,26 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-gray-200 flex items-center justify-center">
-      {!config ? (
+      {/* {!config ? (
         <div className="w-full max-w-2xl">
           <Login onLogin={handleLogin} message={message} />
         </div>
       ) : (
         <div className="w-full max-w-2xl">
-          <Configuration config={config} onUpdate={handleUpdate} message={message}/>
+          <DeviceConfiguration config={config} onUpdate={handleUpdate} message={message}/>
+        </div>
+      )} */}
+       {!isAuthenticated ? (
+        <div className="w-full max-w-2xl">
+          <Login onLogin={handleLogin} message={message} />
+        </div>
+      ) : (
+        <div className="w-full max-w-2xl">
+          <DeviceConfiguration
+            config={config}
+            onUpdate={handleUpdate}
+            message={message}
+          />
         </div>
       )}
     </div>
