@@ -124,7 +124,6 @@ const DeviceConfiguration = () => {
         </div>
       )}
 
-      {/* Content based on active tab */}
       {activeTab === "Network" && (
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Device Name */}
@@ -179,7 +178,7 @@ const DeviceConfiguration = () => {
             </div>
           </div>
 
-          {/* WiFi Credentials (Conditional) */}
+          {/* WiFi Credentials */}
           {enableWiFi && (
             <>
               <div>
@@ -295,21 +294,21 @@ const DeviceConfiguration = () => {
       {activeTab === "Monitoring" && (
         <div>
           <h2 className="text-xl font-bold mb-4">Monitoring Settings</h2>
-          {/* ... your monitoring settings content ... */}
+    
         </div>
       )}
 
       {activeTab === "Relays" && (
         <div>
           <h2 className="text-xl font-bold mb-4">Relays Settings</h2>
-          {/* ... your relays settings content ... */}
+   
         </div>
       )}
 
       {activeTab === "Settings" && (
         <div>
           <h2 className="text-xl font-bold mb-4">Other Settings</h2>
-          {/* ... your other settings content ... */}
+ 
         </div>
       )}
     </div>
